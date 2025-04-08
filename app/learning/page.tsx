@@ -102,7 +102,7 @@ export default function LearnPage() {
             </Button>
           </div>
         </div>
-        <p className="text-muted-foreground max-w-3xl">
+        <p className="text-[#202124] font-normal text-base">
           Go from beginner under 6 months! Upskill with our self-paced, structured courses designed to be completed in 6 months. Build and showcase your own solutions, and boost your confidence in machine learning!
         </p>
 
