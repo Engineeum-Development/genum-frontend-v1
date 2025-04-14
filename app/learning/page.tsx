@@ -14,6 +14,7 @@ import { BookOpenText, LayoutList, Grid3x3 } from "lucide-react";
 import Image from "next/image";
 import learningpageimage from "/public/assets/images/learningpage-image.png";
 import courseimage from "/public/assets/images/courses-image.png";
+import Link from "next/link";
 
 interface Course {
   id: string;
@@ -102,17 +103,21 @@ export default function LearnPage() {
             </Button>
           </div>
         </div>
-        <p className="text-muted-foreground max-w-3xl">
-          Go from beginner under 6 months! Upskill with our self-paced, structured courses designed to be completed in 6 months. Build and showcase your own solutions, and boost your confidence in machine learning!
+        <p className="text-[#202124] font-normal text-base">
+          Go from beginner under 6 months! Upskill with our self-paced,
+          structured courses designed to be completed in 6 months. Build and
+          showcase your own solutions, and boost your confidence in machine
+          learning!
         </p>
 
         <Accordion type="multiple" className="mt-6 w-full">
           {courses.map((course, index) => (
             <AccordionItem key={course.id} value={course.id}>
               <AccordionTrigger>
-                <div
+                <Link
+                  href={`/learning/${course.title}`}
                   className="flex gap-4 items-center text-left cursor-pointer w-full"
-                  onClick={() => router.push(`/courses/${course.id}`)}
+                //   onClick={() => router.push(`/courses/${course.id}`)}
                 >
                   <Image
                     src={courseimage}
@@ -127,7 +132,7 @@ export default function LearnPage() {
                       {course.description}
                     </p>
                   </div>
-                </div>
+                </Link>
               </AccordionTrigger>
               <AccordionContent>
                 <Card>
@@ -143,5 +148,5 @@ export default function LearnPage() {
         </Accordion>
       </div>
     </section>
-  );
+  )
 }

@@ -6,7 +6,85 @@ import { IoListSharp } from "react-icons/io5"
 import { IoGrid } from "react-icons/io5"
 import LearningCard from "@/app/_components/learningCard";
 
+
+
+
+
+
+
+
+
 function page() {
+    
+    type course = {
+      title: string
+      description: string
+    }
+
+    const course = [
+      {
+        id: "1",
+        title: "Course 1",
+        description: "Get Started with Python if you have no coding experience",
+        image: "/assets/images/courses-image.png",
+      },
+      {
+        id: "2",
+        title: "Course 2",
+        description: "Get Started with Python if you have no coding experience",
+        image: "/assets/images/courses-image.png",
+      },
+      {
+        id: "3",
+        title: "Course 3",
+        description: "Get Started with Python if you have no coding experience",
+        image: "/assets/images/courses-image.png",
+      },
+      {
+        id: "4",
+        title: "Course 4",
+        description: "Get Started with Python if you have no coding experience",
+        image: "/assets/images/courses-image.png",
+      },
+      {
+        id: "5",
+        title: "Course 5",
+        description: "Get Started with Python if you have no coding experience",
+        image: "/assets/images/courses-image.png",
+      },
+      {
+        id: "6",
+        title: "Course 5",
+        description: "Get Started with Python if you have no coding experience",
+        image: "/assets/images/courses-image.png",
+      },
+      {
+        id: "7",
+        title: "Course 5",
+        description: "Get Started with Python if you have no coding experience",
+        image: "/assets/images/courses-image.png",
+      },
+      {
+        id: "8",
+        title: "Course 5",
+        description: "Get Started with Python if you have no coding experience",
+        image: "/assets/images/courses-image.png",
+      },
+    ]
+
+
+    // const course = [
+    //   {
+    //     title: "Introduction to Programming",
+    //     description: "intro-to-programming",
+    //   },
+    //   {
+    //     title: "React Basics",
+    //     description: "react-basics",
+    //   },
+    // ]
+
+
     return (
       <div className="flex flex-col w-full gap-8">
         <div className="flex w-11/12 mx-auto justify-between items-end">
@@ -43,14 +121,12 @@ function page() {
           </div>
         </div>
         <div className="w-[95%] mb-12 mx-auto flex flex-wrap justify-center gap-1 items-start">
-          <LearningCard />
-          <LearningCard />
-          <LearningCard />
-          <LearningCard />
-          <LearningCard />
-          <LearningCard />
-          <LearningCard />
-          <LearningCard />
+                {course.map((item) => (
+                    <LearningCard
+                        key={item.id}
+                        course={item}
+                    />
+                ))}
         </div>
       </div>
     )
