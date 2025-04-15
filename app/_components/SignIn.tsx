@@ -9,6 +9,8 @@ import { TabsTrigger, TabsList } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import ForgotPasswordModal from "./ForgotPasswordModal";
 import { useForm } from "react-hook-form";
+import Spinner from "./Spinner";
+import { loginUser } from "../api/user";
 
 function SignIn() {
   const [showEmailForm, setShowEmailForm] = useState(false);
@@ -40,13 +42,28 @@ function SignIn() {
   );
 }
 
+type FormValues = Record<"email" | "password", string>;
 function EmailForm() {
-  const { register, formState, handleSubmit } = useForm();
+  const { register, formState, handleSubmit } = useForm<FormValues>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const { errors } = formState;
-  console.log(errors);
+  // console.log(errors);
 
-  function onSubmit() {}
+  async function onSubmit(data: FormValues) {
+    console.log(data);
+
+    setIsLoading(true);
+
+    try {
+      const userData = await loginUser(data);
+      console.log(userData);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
     <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
@@ -54,32 +71,41 @@ function EmailForm() {
         <Input
           type="email"
           placeholder="e.g engeenum@gmail.com"
-          className={`w-full shadow-none border  text-[#2A2A2A] text-[16px]   p-4 focus:outline-none active:outline-none,   ${
+          disabled={isLoading}
+          className={`w-full shadow-none border  text-[#2A2A2A] text-[16px]   p-4 focus:outline-none active:outline-none  ${
             errors.email ? "border-[#670C0C]" : "border-[#858585]"
           }`}
-          {...register("email", { required: "This field is required" })}
+          {...register("email", { required: "Email is required" })}
         />
         <p className="absolute  -top-2 sm:-top-3 bg-white left-2 font-bold sm:text-[15px] text-[12px] text-[#2A2A2A]">
           Email
         </p>
 
         {errors.email && (
-          <p className="text-[13px] text-[#670C0C]">
-            {String(errors.email.message)}
-          </p>
+          <p className="text-[13px] text-[#670C0C]">{errors.email?.message}</p>
         )}
       </div>
 
       <div className="relative mt-[32px]">
-        <Input
-          type="password"
-          placeholder="e.g engeenum@gmail.com"
-          className="w-full shadow-none border-b border-[#858585] text-[#2A2A2A] text-[16px]   p-4 focus:outline-none"
-        />
-        <p className="absolute  -top-2 sm:-top-3 bg-white left-2 font-bold sm:text-[15px] text-[12px] text-[#2A2A2A]">
-          Password
-        </p>
-
+        <div>
+          <Input
+            type="password"
+            disabled={isLoading}
+            placeholder="e.g engeenum@gmail.com"
+            className={`w-full shadow-none border text-[#2A2A2A] text-[16px]   p-4 focus:outline-none active:outline-none   ${
+              errors.password ? "border-[#670C0C]" : "border-[#858585]"
+            }`}
+            {...register("password", { required: "Password is required" })}
+          />
+          <p className="absolute  -top-2 sm:-top-3 bg-white left-2 font-bold sm:text-[15px] text-[12px] text-[#2A2A2A]">
+            Password
+          </p>
+          {errors.email && (
+            <p className="text-[13px] text-[#670C0C]">
+              {errors.password?.message}
+            </p>
+          )}
+        </div>
         <Dialog>
           <DialogTrigger className="bg-transparent shadow-none text-[#670C0C] hover:bg-transparent w-fit flex items-center justify-self-end px-0">
             Forgot Password ?
@@ -91,8 +117,11 @@ function EmailForm() {
       </div>
 
       <div className="flex flex-col items-center justify-center max-w-[360px] mx-auto">
-        <Button className="bg-[#4393F4] w-full py-2 hover:bg-[#4393F4] mt-[10px]">
-          Login
+        <Button
+          className="bg-[#4393F4] w-full py-2 hover:bg-[#4393F4] mt-[10px]"
+          disabled={isLoading}
+        >
+          {isLoading ? <Spinner /> : " Login"}
         </Button>
 
         <div className="flex items-center justify-center mt-[10px] w-full">
