@@ -11,6 +11,8 @@ import ForgotPasswordModal from "./ForgotPasswordModal";
 import { useForm } from "react-hook-form";
 import Spinner from "./Spinner";
 import { loginUser } from "../api/user";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 function SignIn() {
   const [showEmailForm, setShowEmailForm] = useState(false);
@@ -44,22 +46,25 @@ function SignIn() {
 
 type FormValues = Record<"email" | "password", string>;
 function EmailForm() {
-  const { register, formState, handleSubmit } = useForm<FormValues>();
+  const { register, formState, handleSubmit, reset } = useForm<FormValues>();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const { errors } = formState;
-  // console.log(errors);
 
   async function onSubmit(data: FormValues) {
-    console.log(data);
-
     setIsLoading(true);
 
     try {
       const userData = await loginUser(data);
-      console.log(userData);
-    } catch (error) {
+      if (userData) {
+        router.push("/");
+        reset();
+        toast.success("Login successful");
+      }
+    } catch (error: any) {
       console.log(error);
+      toast.error(error.message);
     } finally {
       setIsLoading(false);
     }

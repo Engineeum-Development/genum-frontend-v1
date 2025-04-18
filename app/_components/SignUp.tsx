@@ -16,8 +16,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Spinner from "./Spinner";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { createUser } from "../api/user";
+import toast from "react-hot-toast";
 
 function SignUp() {
   const [showEmailForm, setShowEmailForm] = useState(false);
@@ -76,13 +77,12 @@ type FormValues = Record<
 function EmailForm() {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { register, formState, handleSubmit, control, setError } =
+  const { register, formState, handleSubmit, control, setError, reset } =
     useForm<FormValues>();
+  const router = useRouter();
   const { errors } = formState;
 
   async function onSubmit(data: FormValues) {
-    // console.log(data);
-
     if (data.password !== data.confirmPassword) {
       setError("confirmPassword", {
         type: "custom",
@@ -91,14 +91,23 @@ function EmailForm() {
       return;
     }
 
+    const newData = { ...data, gender: data.gender.toUpperCase() };
+    const { confirmPassword, ...dataApi } = newData;
+
     setIsLoading(true);
 
     try {
-      const userData = await createUser(data);
-      console.log(userData);
-      redirect("/");
-    } catch (error) {
+      const userData = await createUser(dataApi);
+      if (userData) {
+        toast.success("Signup successful, Verify your email to continue", {
+          duration: 8000,
+        });
+        // window.location.reload();
+        reset();
+      }
+    } catch (error: any) {
       console.log(error);
+      toast.error(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -214,7 +223,7 @@ function EmailForm() {
 
         <div className="relative mt-7">
           <Input
-            type="password"
+            type="text"
             disabled={isLoading}
             placeholder="e.g engeenum@gmail.com"
             className={`w-full shadow-none border text-[#2A2A2A] text-[16px]   p-4 focus:outline-none   ${
@@ -232,7 +241,7 @@ function EmailForm() {
 
         <div className="relative mt-7">
           <Input
-            type="password"
+            type="text"
             placeholder="e.g engeenum@gmail.com"
             disabled={isLoading}
             className={`w-full shadow-none border-b border-[#858585] text-[#2A2A2A] text-[16px]   p-4 focus:outline-none   ${
