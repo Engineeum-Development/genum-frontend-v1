@@ -1,3 +1,5 @@
+"use client";
+
 import img1 from "@/public/assets/images/data-img-npfl.png";
 import menu from "@/public/assets/images/data-more-icon.png";
 import progressDummy from "@/public/assets/images/progress-dummy.png";
@@ -5,10 +7,18 @@ import likeIcon from "@/public/assets/images/like-Icon.png";
 import Image from "next/image";
 
 import { Card, CardHeader } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 function DatasetList() {
+  const router = useRouter();
+  function handleClick() {
+    router.push("/datasets/[id]");
+  }
   return (
-    <Card className="shadow-none border-none flex mt-[48px] justify-between gap-1 w-full flex-col sm:flex-row">
+    <Card
+      className="shadow-none border-none flex mt-[20px] justify-between gap-1 w-full flex-col sm:flex-row"
+      onClick={handleClick}
+    >
       <div className="flex items-start sm:justify-between gap-[19px] ">
         <Image
           src={img1}

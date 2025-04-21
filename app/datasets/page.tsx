@@ -2,22 +2,36 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import searchLogo from "@/public/assets/images/search-icon.png";
+import illustration from "@/public/assets/images/dataset-illustration.png";
 import Datasets from "./Datasets";
+import Link from "next/link";
 
 function page() {
+  // console.log("running");
   return (
     <div className="px-10 py-10">
-      <div className="flex justify-between items-center gap-2">
-        <div>
-          <h1 className="text-[25px] font-semibold">Datasets</h1>
-          <p className="mt-[10px] font-medium text-[#202124] text-[14px]">
-            Contribute, download and work with datasets specific to Africa
-          </p>
+      <div className="flex justify-between items-start sm:items-center gap-5 md:border-t md:pl-5 flex-col sm:flex-row">
+        <div className="flex justify-between gap-2  flex-col md:max-w-[337px] sm:max-w-[400px]">
+          <div className="flex flex-col">
+            <h1 className="text-[25px] font-semibold">Datasets</h1>
+            <p className="mt-[10px] font-medium text-[#202124] text-[14px]">
+              Be part of Africa&apos;s AI revolution. Contribute, connect, and
+              create the future today on Genum
+            </p>
+          </div>
+          <Link
+            href={"/datasets/new"}
+            className="bg-[#4393F4] text-white py-0 text-[11px] px-1 min-[500px]:px-4 min-[500px]:text-[13px] min-[500px]:py-2 max-w-[212px] hover:bg-[#4393F4] text-center rounded-[7px]"
+          >
+            + Add New Dataset
+          </Link>
         </div>
-        <Button className="bg-[#4393F4] text-white py-0 text-[11px] px-1 min-[500px]:px-4 min-[500px]:text-[13px] min-[500px]:py-2 ">
-          {" "}
-          + Add New Dataset
-        </Button>
+
+        <Image
+          src={illustration}
+          alt="illustation"
+          className="w-full max-w-[446px] max-h-[382px] mt-3 sm:mt-0"
+        />
       </div>
       <p className="mt-[27px] text-[#202124] font-semibold text-[20px]">
         Find up to 10,000+ quality public datasets about Africa, contributed by

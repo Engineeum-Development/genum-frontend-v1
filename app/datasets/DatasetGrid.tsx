@@ -1,3 +1,5 @@
+"use client";
+
 import img1 from "@/public/assets/images/data-img-npfl.png";
 import menu from "@/public/assets/images/data-more-icon.png";
 import progressDummy from "@/public/assets/images/progress-dummy.png";
@@ -5,10 +7,20 @@ import likeIcon from "@/public/assets/images/like-Icon.png";
 import Image from "next/image";
 
 import { Card, CardHeader } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 function DatasetGrid() {
+  const router = useRouter();
+
+  function handleClick() {
+    router.push("/datasets/[id]");
+  }
+  // console.log("running");
   return (
-    <Card className="mt-6 max-w-[264px] bg-[#FAFAFA] p-3">
+    <Card
+      className="mt-6 max-w-[264px] bg-[#FAFAFA] p-3 shrink-0"
+      onClick={handleClick}
+    >
       <Image
         src={img1}
         alt="data-img"

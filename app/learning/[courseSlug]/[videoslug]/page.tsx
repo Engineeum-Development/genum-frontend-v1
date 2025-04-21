@@ -41,9 +41,15 @@ export default function VideoSlug({ videoUrl }: VideoSlugProps) {
       <div className="mt-6 max-w-lg">
         <Card className="flex items-center justify-between p-4">
           <div className="flex items-center gap-4">
-            <Image src={courseThumbnail} alt="Course" className="w-14 h-14 rounded" />
+            <Image
+              src={courseThumbnail}
+              alt="Course"
+              className="w-14 h-14 rounded"
+            />
             <div>
-              <h3 className="font-medium text-sm text-[#202124]">Introduction to Programming</h3>
+              <h3 className="font-medium text-sm text-[#202124]">
+                Introduction to Programming
+              </h3>
               <p className="text-xs text-gray-500">
                 Get Started with Python if you have no coding experience
               </p>
@@ -117,7 +123,7 @@ export default function VideoSlug({ videoUrl }: VideoSlugProps) {
               <Button className="text-sm bg-[#4393F4] text-white px-6">Start</Button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
