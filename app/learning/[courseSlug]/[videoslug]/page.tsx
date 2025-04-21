@@ -1,23 +1,26 @@
-"use client";
+"use client"
 
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronLeft, Settings, Volume2, Maximize2 } from "lucide-react";
-import Image from "next/image";
-import courseThumbnail from "/public/assets/images/course-thumb.png";
+import React from "react"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ChevronLeft, Settings, Volume2, Maximize2 } from "lucide-react"
+import Image from "next/image"
+import courseThumbnail from "/public/assets/images/course-thumb.png"
 
-export default function VideoSlug() {
+type VideoSlugProps = {
+  videoUrl: string
+}
+
+export default function VideoSlug({ videoUrl }: VideoSlugProps) {
   return (
     <div className="w-full px-6 md:px-12 py-10">
-      <h1 className="text-3xl font-bold text-[#2A2A2A]">Introduction to Programmming</h1>
+      <h1 className="text-3xl font-bold text-[#2A2A2A]">Introduction to Programming</h1>
       <p className="text-gray-600 text-sm mt-1">
         Get Started with Python if you have no coding experience
       </p>
 
-    
       <Tabs defaultValue="classroom" className="mt-6">
         <TabsList className="bg-transparent border-b border-gray-300 px-0">
           <TabsTrigger
@@ -35,7 +38,6 @@ export default function VideoSlug() {
         </TabsList>
       </Tabs>
 
-      
       <div className="mt-6 max-w-lg">
         <Card className="flex items-center justify-between p-4">
           <div className="flex items-center gap-4">
@@ -47,19 +49,24 @@ export default function VideoSlug() {
               </p>
             </div>
           </div>
-          <div className="text-sm text-gray-600">Module <span className="font-semibold">1/5</span></div>
+          <div className="text-sm text-gray-600">
+            Module <span className="font-semibold">1/5</span>
+          </div>
         </Card>
       </div>
 
-      
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
         <div className="lg:col-span-2">
           <div className="relative bg-black rounded-lg overflow-hidden">
-            <video controls className="w-full h-[380px] object-cover">
-              <source src="/video.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <iframe
+              src={videoUrl}
+              width="100%"
+              height="380"
+              allow="autoplay"
+              allowFullScreen
+              className="w-full rounded-lg"
+            />
+
             <div className="absolute top-4 left-4 text-white">
               <ChevronLeft size={24} />
             </div>
@@ -71,7 +78,6 @@ export default function VideoSlug() {
           </div>
         </div>
 
-        
         <div className="space-y-6 flex flex-col justify-between">
           <div className="space-y-6">
             <div>
@@ -89,18 +95,22 @@ export default function VideoSlug() {
             <div>
               <p className="text-sm font-semibold text-[#202124] mb-2">Tags</p>
               <div className="flex flex-wrap gap-2">
-                {["Health", "African", "Infection", "Diseases", "WHO", "Economy", "Climate change", "Emergency"].map(tag => (
+                {[
+                  "Health", "African", "Infection", "Diseases",
+                  "WHO", "Economy", "Climate change", "Emergency",
+                ].map(tag => (
                   <Badge key={tag} variant="outline" className="text-xs">{tag}</Badge>
                 ))}
               </div>
             </div>
           </div>
 
-          
           <div className="p-4 bg-[#E6F0FF] rounded-lg flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-700 font-medium">Your Turn</p>
-              <p className="text-xs text-gray-600 mt-1">Try the exercise: Syntax, Variables and Numbers</p>
+              <p className="text-xs text-gray-600 mt-1">
+                Try the exercise: Syntax, Variables and Numbers
+              </p>
             </div>
             <div className="flex items-center gap-3">
               <Button variant="ghost" className="text-sm">Skip</Button>
@@ -110,5 +120,5 @@ export default function VideoSlug() {
         </div>
       </div>
     </div>
-  );
+  )
 }
