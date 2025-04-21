@@ -5,19 +5,31 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronLeft, Settings, Volume2, Maximize2 } from "lucide-react";
+import { ChevronLeft, Settings, Volume2, Maximize2, Router } from "lucide-react";
 import Image from "next/image";
+import { FaArrowAltCircleRight } from "react-icons/fa"
+import { FaArrowAltCircleLeft } from "react-icons/fa"
 import courseThumbnail from "/public/assets/images/course-thumb.png";
+import router from "next/router";
+import { useRouter } from "next/navigation";
+
+
+
 
 export default function VideoSlug() {
+
+  const router = useRouter();
+
+
   return (
     <div className="w-full px-6 md:px-12 py-10">
-      <h1 className="text-3xl font-bold text-[#2A2A2A]">Introduction to Programmming</h1>
+      <h1 className="text-3xl font-bold text-[#2A2A2A]">
+        Introduction to Programmming
+      </h1>
       <p className="text-gray-600 text-sm mt-1">
         Get Started with Python if you have no coding experience
       </p>
 
-    
       <Tabs defaultValue="classroom" className="mt-6">
         <TabsList className="bg-transparent border-b border-gray-300 px-0">
           <TabsTrigger
@@ -35,25 +47,30 @@ export default function VideoSlug() {
         </TabsList>
       </Tabs>
 
-      
       <div className="mt-6 max-w-lg">
         <Card className="flex items-center justify-between p-4">
           <div className="flex items-center gap-4">
-            <Image src={courseThumbnail} alt="Course" className="w-14 h-14 rounded" />
+            <Image
+              src={courseThumbnail}
+              alt="Course"
+              className="w-14 h-14 rounded"
+            />
             <div>
-              <h3 className="font-medium text-sm text-[#202124]">Introduction to Programming</h3>
+              <h3 className="font-medium text-sm text-[#202124]">
+                Introduction to Programming
+              </h3>
               <p className="text-xs text-gray-500">
                 Get Started with Python if you have no coding experience
               </p>
             </div>
           </div>
-          <div className="text-sm text-gray-600">Module <span className="font-semibold">1/5</span></div>
+          <div className="text-sm text-gray-600">
+            Module <span className="font-semibold">1/5</span>
+          </div>
         </Card>
       </div>
 
-      
-      <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
+      <div className="mt-8 flex flex-col gap-8">
         <div className="lg:col-span-2">
           <div className="relative bg-black rounded-lg overflow-hidden">
             <video controls className="w-full h-[380px] object-cover">
@@ -70,9 +87,12 @@ export default function VideoSlug() {
             </div>
           </div>
         </div>
+        <div className="flex items-center justify-between w-full ">
+          <FaArrowAltCircleLeft className="text-3xl cursor-pointer" onClick={() => {router.push("/")}} />
+          <FaArrowAltCircleRight className="text-3xl cursor-pointer" />
+        </div>
 
-        
-        <div className="space-y-6 flex flex-col justify-between">
+        {/* <div className="space-y-6 flex flex-col justify-between">
           <div className="space-y-6">
             <div>
               <p className="text-sm font-semibold text-[#202124]">Usability</p>
@@ -107,8 +127,8 @@ export default function VideoSlug() {
               <Button className="text-sm bg-[#4393F4] text-white px-6">Start</Button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
-  );
+  )
 }
