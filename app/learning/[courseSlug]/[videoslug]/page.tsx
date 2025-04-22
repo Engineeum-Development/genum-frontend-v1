@@ -8,15 +8,50 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ChevronLeft, Settings, Volume2, Maximize2 } from "lucide-react"
 import Image from "next/image"
 import courseThumbnail from "/public/assets/images/course-thumb.png"
+import { FaArrowAltCircleLeft } from "react-icons/fa"
+import { FaArrowAltCircleRight } from "react-icons/fa"
+import { Router } from "next/router"
+import { useRouter, usePathname } from "next/navigation"
+
+
+
 
 type VideoSlugProps = {
   videoUrl: string
 }
 
 export default function VideoSlug({ videoUrl }: VideoSlugProps) {
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleNavigation = (direction: "next" | "prev") => {
+    const parts = pathname.split("/"); //[splitting the pathname]
+    const currentId = parts[parts.length - 1]; //last part of the pathname
+
+    if (isNaN(currentId as any)) {
+      console.error("invalid ID:", pathname);
+      return;
+    }
+    
+    const newId = direction === "next" ? Number(currentId) + 1 : Number(currentId) - 1;
+
+    if (newId < 1) return;
+    
+     parts[parts.length - 1] = newId.toString();
+    const newPath = parts.join("/");
+
+    router.push(newPath);
+  
+
+  } 
+
+
   return (
     <div className="w-full px-6 md:px-12 py-10">
-      <h1 className="text-3xl font-bold text-[#2A2A2A]">Introduction to Programming</h1>
+      <h1 className="text-3xl font-bold text-[#2A2A2A]">
+        Introduction to Programming
+      </h1>
       <p className="text-gray-600 text-sm mt-1">
         Get Started with Python if you have no coding experience
       </p>
@@ -61,8 +96,8 @@ export default function VideoSlug({ videoUrl }: VideoSlugProps) {
         </Card>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2">
+      <div className="mt-8 w-full flex flex-col gap-8">
+        <div className="w-full">
           <div className="relative bg-black rounded-lg overflow-hidden">
             <iframe
               src={videoUrl}
@@ -83,8 +118,18 @@ export default function VideoSlug({ videoUrl }: VideoSlugProps) {
             </div>
           </div>
         </div>
+        <div className="flex items-center justify-between mt-3">
+          <FaArrowAltCircleLeft
+            className="text-3xl cursor-pointer"
+            onClick={() => handleNavigation("prev")}
+          />
+          <FaArrowAltCircleRight
+            className="text-3xl cursor-pointer"
+            onClick={() => handleNavigation("next")}
+          />
+        </div>
 
-        <div className="space-y-6 flex flex-col justify-between">
+        {/* <div className="space-y-6 flex flex-col justify-between">
           <div className="space-y-6">
             <div>
               <p className="text-sm font-semibold text-[#202124]">Usability</p>
@@ -123,7 +168,7 @@ export default function VideoSlug({ videoUrl }: VideoSlugProps) {
               <Button className="text-sm bg-[#4393F4] text-white px-6">Start</Button>
             </div>
           </div>
-        </div> */}
+        </div>  */}
       </div>
     </div>
   )
