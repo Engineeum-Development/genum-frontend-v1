@@ -123,7 +123,7 @@ export default function VideoSlug({ videoUrl }: VideoSlugProps) {
               <Button className="text-sm bg-[#4393F4] text-white px-6">Start</Button>
             </div>
           </div>
-        </div> */}
+        </div> 
       </div>
     </div>
   )
