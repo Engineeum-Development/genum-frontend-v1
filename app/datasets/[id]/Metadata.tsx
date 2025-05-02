@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-function Metadata() {
+function Metadata({ data }: any) {
   return (
     <div className="mt-[53px]">
       <div className="flex gap-2 items-center border-b-2 pb-[34px]">
@@ -21,7 +21,7 @@ function Metadata() {
             Collaborators
           </AccordionTrigger>
           <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
+            {data?.collaborators?.collaboratorName || ""}
           </AccordionContent>
         </AccordionItem>
 
@@ -29,27 +29,21 @@ function Metadata() {
           <AccordionTrigger className="text-[24px] font-medium hover:no-underline">
             Authors
           </AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
+          <AccordionContent>{data?.authors || ""}</AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-3">
           <AccordionTrigger className="text-[24px] font-medium hover:no-underline">
             Coverage
           </AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
+          <AccordionContent>{data?.coverage || ""}</AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-4">
           <AccordionTrigger className="text-[24px] font-medium hover:no-underline">
             DOI Citation
           </AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
+          <AccordionContent>{data?.doiCitation || ""}</AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="item-5">
@@ -57,7 +51,7 @@ function Metadata() {
             License
           </AccordionTrigger>
           <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
+            {data?.license?.licenseName || ""}
           </AccordionContent>
         </AccordionItem>
 

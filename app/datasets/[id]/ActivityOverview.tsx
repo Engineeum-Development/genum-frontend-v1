@@ -10,7 +10,7 @@ import chatIcon from "@/public/assets/images/chat-icon.png";
 import profileIcon from "@/public/assets/images/profile-icon.png";
 import iconRight from "@/public/assets/images/icon-right.png";
 
-function ActivityOverview() {
+function ActivityOverview({ data }: any) {
   return (
     <div className="mt-[56px]">
       <div className="mt-6 flex justify-between items-center flex-col gap-3 min-[500px]:flex-row min-[500px]:items-center">
@@ -39,7 +39,7 @@ function ActivityOverview() {
             <p className="text-[20px] font-semibold text-[#2A2A2A]">Views</p>
           </div>
           <p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
-            1
+            {data?.views || 0}
           </p>
           <p className="text-[#6E6E6E] text-[15px] font-semibold">
             in the last 30 days
@@ -53,7 +53,7 @@ function ActivityOverview() {
             </p>
           </div>
           <p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
-            1
+            {data?.downloads || 0}
           </p>
           <p className="text-[#6E6E6E] text-[15px] font-semibold">
             in the last 30 days
@@ -67,7 +67,7 @@ function ActivityOverview() {
             </p>
           </div>
           <p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
-            1
+            {data?.engagements || 0}
           </p>
           <p className="text-[#6E6E6E] text-[15px] font-semibold">
             in the last 30 days
@@ -79,7 +79,7 @@ function ActivityOverview() {
             <p className="text-[20px] font-semibold text-[#2A2A2A]">Comments</p>
           </div>
           <p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
-            1
+            {data?.comments || 0}
           </p>
           <p className="text-[#6E6E6E] text-[15px] font-semibold">
             in the last 30 days

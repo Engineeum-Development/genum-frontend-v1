@@ -4,7 +4,7 @@ import boardIcon from "@/public/assets/images/view-boards.png";
 import arrowRight from "@/public/assets/images/icon-right.png";
 import folderIcon from "@/public/assets/images/folder-open.png";
 
-function ReviewTags() {
+function ReviewTags({ data }: any) {
   return (
     <div className="mt-[56px] flex gap-6 pb-[70px] border-b-2 flex-col md:flex-row">
       <div className="flex-1 max-w-[798px]">
@@ -19,20 +19,18 @@ function ReviewTags() {
         <div className="mt-[15px]">
           <h6 className="text-[16px]">What have you used this dataset for?</h6>
           <div className="flex gap-2 flex-wrap  my-2 ">
-            {["Learning 6", "Research 1", "Application 1", "Education 1"].map(
-              (value) => (
-                <p
-                  className="bg-transparent text-[#2A2A2A] border border-[#2A2A2A] px-1 py-0 hover:bg-transparent rounded-[8px] w-fit"
-                  key={value}
-                >
-                  {value}
-                </p>
-              )
-            )}
+            {data?.tags?.map((tag: any) => (
+              <p
+                className="bg-transparent text-[#2A2A2A] border border-[#2A2A2A] px-1 py-0 hover:bg-transparent rounded-[8px] w-fit"
+                key={tag.tagCategory}
+              >
+                {tag.tagCategory}
+              </p>
+            ))}
           </div>
         </div>
 
-        <div className="mt-[16px]">
+        {/* <div className="mt-[16px]">
           <h6 className="text-[16px]">How would you describe this dataset?</h6>
           <div className="flex gap-2 flex-wrap  my-2 ">
             {[
@@ -50,10 +48,10 @@ function ReviewTags() {
               </p>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
 
-      <div className="flex justify-between items-start flex-wrap md:flex-col">
+      {/* <div className="flex justify-between items-start flex-wrap md:flex-col">
         <div>
           <h1 className="text-[#2A2A2A] font-semibold text-[20px] mb-[15px]">
             Data Explorer
@@ -90,7 +88,7 @@ function ReviewTags() {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

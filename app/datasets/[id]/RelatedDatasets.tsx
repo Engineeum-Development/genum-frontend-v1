@@ -21,9 +21,7 @@ function RelatedDatasets() {
         </h1>
       </div>
 
-      <div className="flex gap-3 mt-[29px]">
-        <DatasetGrid />
-      </div>
+      <div className="flex gap-3 mt-[29px]">{/* <DatasetGrid /> */}</div>
     </div>
   );
 }
