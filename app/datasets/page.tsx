@@ -5,9 +5,13 @@ import searchLogo from "@/public/assets/images/search-icon.png";
 import illustration from "@/public/assets/images/dataset-illustration.png";
 import Datasets from "./Datasets";
 import Link from "next/link";
+import { getDatasets } from "../api/datasets";
 
-function page() {
+async function page() {
   // console.log("running");
+
+  // const data = await getDatasets();
+  // console.log(data);
   return (
     <div className="px-10 py-10">
       <div className="flex justify-between items-start sm:items-center gap-5 md:border-t md:pl-5 flex-col sm:flex-row">
@@ -50,7 +54,7 @@ function page() {
         />
       </div>
 
-      <div className="mt-6 flex gap-2 overflow-x-auto scrollbar-hide">
+      {/* <div className="mt-6 flex gap-2 overflow-x-auto scrollbar-hide">
         <Button className="bg-transparent text-[#2A2A2A] border border-[#2A2A2A] px-1 py-0 hover:bg-transparent rounded-[11px]">
           All Datasets
         </Button>
@@ -60,7 +64,7 @@ function page() {
         <Button className="bg-transparent text-[#2A2A2A] border border-[#2A2A2A] px-1 py-0 hover:bg-transparent rounded-[11px]">
           Startup funding data
         </Button>
-      </div>
+      </div> */}
 
       <Datasets />
     </div>

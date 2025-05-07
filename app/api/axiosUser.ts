@@ -56,6 +56,9 @@ class ApiClient {
    * @returns {Session | null} The parsed session or null if invalid/not found
    */
   private static getSession(): Session | null {
+    // if (typeof window !== undefined) {
+    //   return null;
+    // }
     const sessionStr = localStorage.getItem("session");
     if (!sessionStr) return null;
 
@@ -192,6 +195,10 @@ function handleApiError(error: AxiosError): void {
  */
 function retryFailedRequest(error: unknown): Promise<unknown> {
   const { config } = error as { config: CustomAxiosRequestConfig };
+
+  if (!config) {
+    return Promise.reject(error);
+  }
   if (!config || !config.retryCount) {
     config.retryCount = 0;
   }
@@ -200,6 +207,10 @@ function retryFailedRequest(error: unknown): Promise<unknown> {
   const status = (error as AxiosError).response?.status;
   if (status && status >= 400 && status < 500) {
     return Promise.reject(error);
+  }
+
+  if (typeof config.retryCount !== "number") {
+    config.retryCount = 0;
   }
 
   if (config.retryCount < MAX_RETRIES) {

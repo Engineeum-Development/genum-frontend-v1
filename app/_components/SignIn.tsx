@@ -58,7 +58,7 @@ function EmailForm() {
     try {
       const userData = await loginUser(data);
       if (userData) {
-        router.push("/");
+        router.push("/datasets");
         reset();
         toast.success("Login successful");
       }

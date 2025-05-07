@@ -4,61 +4,64 @@ import preview from "@/public/assets/images/data-preview.png";
 import boardIcon from "@/public/assets/images/view-boards.png";
 import arrowRight from "@/public/assets/images/icon-right.png";
 import folderIcon from "@/public/assets/images/folder-open.png";
+import Link from "next/link";
 
-function DataContent() {
+function DataContent({ data }: any) {
+  console.log(data);
   return (
     <div className="mt-[29px]">
-      <div className="flex  gap-6 flex-col lg:flex-row">
+      <div className="flex  gap-6 flex-col lg:flex-row justify-between ">
         <div className="xl:max-w-[798px] lg:max-w-[700px]">
           <h1 className="text-[31px] font-semibold text-[#2A2A2A]">
             About Dataset
           </h1>
           <h3 className="text-[25px] mt-[30px] font-semibold text-[#2A2A2A]">
-            Health crises on the rise in African countries
+            {data?.name || ""}
           </h3>
-          <p className="mt-[15px] text-[16px]">
-            Health crises, including outbreaks of infectious diseases and rising
-            non-communicable diseases, are on the rise in many African
-            countries, exacerbated by climate change, weak health systems, and
-            humanitarian emergencies, impacting economic development and
-            regional stability
-          </p>
+          <p className="mt-[15px] text-[16px]">{data?.description || ""}</p>
         </div>
         <div className="lg:max-w-[278px] flex-wrap items-center flex lg:flex-col gap-6 lg:items-start">
           <div className="flex items-start min-[446px]:items-center flex-col lg:items-start">
             <h2 className="text-[#2A2A2A] font-semibold text-[16px]">
               Usability
             </h2>
-            <p className="text-[16px] font-normal text-[#202124] my-2">8.34</p>
+            <p className="text-[16px] font-normal text-[#202124] my-2">
+              {data?.usability || ""}
+            </p>
           </div>
 
           <div className="flex items-start min-[446px]:items-center flex-col lg:items-start">
             <h2 className="text-[#2A2A2A] font-semibold text-[16px]">
               License
             </h2>
-            <p className="text-[16px] font-normal text-[#202124] my-2">MIT</p>
+            <p className="text-[16px] font-normal text-[#202124] my-2">
+              {data?.license?.licenseName || ""}
+            </p>
           </div>
 
           <div className="flex items-start min-[446px]:items-center flex-col lg:items-start">
             <h2 className="text-[#2A2A2A] font-semibold text-[16px]">
-              Expected update frequency
+              License URL
             </h2>
-            <p className="text-[16px] font-normal text-[#202124]  my-2">MIT</p>
+            <Link
+              href={data?.license?.licenseUrl || ""}
+              className="text-[16px] font-normal text-[#202124]  my-2"
+            >
+              {data?.license?.licenseUrl || ""}
+            </Link>
           </div>
 
           <div>
             <h2 className="text-[#2A2A2A] font-semibold text-[16px]">Tags</h2>
             <div className="flex gap-2 flex-wrap  my-2 ">
-              {["Health", "WHO", "Africa", "Climate change", "Emergency"].map(
-                (value) => (
-                  <p
-                    className="bg-transparent text-[#2A2A2A] border border-[#2A2A2A] px-1 py-0 hover:bg-transparent rounded-[11px] w-fit"
-                    key={value}
-                  >
-                    {value}
-                  </p>
-                )
-              )}
+              {data?.tags?.map((tag: any) => (
+                <p
+                  className="bg-transparent text-[#2A2A2A] border border-[#2A2A2A] px-1 py-0 hover:bg-transparent rounded-[11px] w-fit"
+                  key={tag.name}
+                >
+                  {tag.name}
+                </p>
+              ))}
             </div>
           </div>
         </div>

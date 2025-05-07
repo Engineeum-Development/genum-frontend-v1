@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import DataContent from "./DataContent";
 
-function AboutDataset() {
+function AboutDataset({ data }: any) {
   return (
     <Tabs
       defaultValue="data-card"
@@ -35,7 +35,7 @@ function AboutDataset() {
         </TabsTrigger>
       </TabsList>
       <TabsContent value="data-card">
-        <DataContent />
+        <DataContent data={data} />
       </TabsContent>
       <TabsContent value="code">
         <div className="mt-[29px]">code</div>

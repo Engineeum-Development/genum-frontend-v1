@@ -4,13 +4,13 @@ import Metadata from "./Metadata";
 import RelatedDatasets from "./RelatedDatasets";
 import ReviewTags from "./ReviewTags";
 
-function DatasetDetails() {
+function DatasetDetails({ data }: any) {
   return (
     <div className="">
-      <AboutDataset />
-      <ReviewTags />
-      <Metadata />
-      <ActivityOverview />
+      <AboutDataset data={data} />
+      <ReviewTags data={data} />
+      <Metadata data={data} />
+      <ActivityOverview data={data} />
       <RelatedDatasets />
     </div>
   );
