@@ -111,13 +111,12 @@ export default function LearnPage() {
         </p>
 
         <Accordion type="multiple" className="mt-6 w-full">
-          {courses.map((course, index) => (
+          {courses.map((course) => (
             <AccordionItem key={course.id} value={course.id}>
               <AccordionTrigger>
                 <Link
                   href={`/learning/${course.title}`}
                   className="flex gap-4 items-center text-left cursor-pointer w-full"
-                //   onClick={() => router.push(`/courses/${course.id}`)}
                 >
                   <Image
                     src={courseimage}
@@ -135,18 +134,36 @@ export default function LearnPage() {
                 </Link>
               </AccordionTrigger>
               <AccordionContent>
-                <Card>
-                  <CardContent className="py-4">
-                    <p className="text-sm text-muted-foreground">
-                      Course content preview will appear here.
-                    </p>
-                  </CardContent>
-                </Card>
+                {course.id === "1" ? (
+                  <Card>
+                    <CardContent className="py-4 space-y-1 text-sm text-muted-foreground">
+                      <p>Python Essentials</p>
+                      <p>Python for Data Science</p>
+                      <p>Setting up and working with IDE</p>
+                      <p>Variables and Data Types</p>
+                      <p>Control flows and Loop</p>
+                      <p>Functions</p>
+                      <p>OOP</p>
+                      <p>Import functions, packages, making</p>
+                      <p>API calls</p>
+                      <p>File writing, file reading, error handling</p>
+                      <p>Practise</p>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  <Card>
+                    <CardContent className="py-4">
+                      <p className="text-sm text-muted-foreground">
+                        Course content preview will appear here.
+                      </p>
+                    </CardContent>
+                  </Card>
+                )}
               </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
       </div>
     </section>
-  )
+  );
 }

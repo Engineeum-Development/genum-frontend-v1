@@ -1,23 +1,54 @@
-"use client";
+"use client"
 
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronLeft, Settings, Volume2, Maximize2 } from "lucide-react";
-import Image from "next/image";
-import courseThumbnail from "/public/assets/images/course-thumb.png";
+import React from "react"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ChevronLeft, Settings, Volume2, Maximize2 } from "lucide-react"
+import Image from "next/image"
+import courseThumbnail from "/public/assets/images/course-thumb.png"
+import { useRouter, usePathname } from "next/navigation"
 
-export default function VideoSlug() {
+type VideoSlugProps = {
+  videoUrl: string
+}
+
+export default function VideoSlug({ videoUrl }: VideoSlugProps) {
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const handleNavigation = (direction: "next" | "prev") => {
+    const parts = pathname.split("/")
+    const currentId = parts[parts.length - 1]
+
+    if (isNaN(currentId as any)) {
+      console.error("invalid ID:", pathname)
+      return
+    }
+
+    const newId =
+      direction === "next"
+        ? Number(currentId) + 1
+        : Number(currentId) - 1
+
+    if (newId < 1) return
+
+    parts[parts.length - 1] = newId.toString()
+    const newPath = parts.join("/")
+
+    router.push(newPath)
+  }
+
   return (
     <div className="w-full px-6 md:px-12 py-10">
-      <h1 className="text-3xl font-bold text-[#2A2A2A]">Introduction to Programmming</h1>
+      <h1 className="text-3xl font-bold text-[#2A2A2A]">
+        Introduction to Programming
+      </h1>
       <p className="text-gray-600 text-sm mt-1">
         Get Started with Python if you have no coding experience
       </p>
 
-    
       <Tabs defaultValue="classroom" className="mt-6">
         <TabsList className="bg-transparent border-b border-gray-300 px-0">
           <TabsTrigger
@@ -35,31 +66,40 @@ export default function VideoSlug() {
         </TabsList>
       </Tabs>
 
-      
       <div className="mt-6 max-w-lg">
         <Card className="flex items-center justify-between p-4">
           <div className="flex items-center gap-4">
-            <Image src={courseThumbnail} alt="Course" className="w-14 h-14 rounded" />
+            <Image
+              src={courseThumbnail}
+              alt="Course"
+              className="w-14 h-14 rounded"
+            />
             <div>
-              <h3 className="font-medium text-sm text-[#202124]">Introduction to Programming</h3>
+              <h3 className="font-medium text-sm text-[#202124]">
+                Introduction to Programming
+              </h3>
               <p className="text-xs text-gray-500">
                 Get Started with Python if you have no coding experience
               </p>
             </div>
           </div>
-          <div className="text-sm text-gray-600">Module <span className="font-semibold">1/5</span></div>
+          <div className="text-sm text-gray-600">
+            Module <span className="font-semibold">1/5</span>
+          </div>
         </Card>
       </div>
 
-      
-      <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        <div className="lg:col-span-2">
+      <div className="mt-8 w-full flex flex-col gap-8">
+        <div className="w-full">
           <div className="relative bg-black rounded-lg overflow-hidden">
-            <video controls className="w-full h-[380px] object-cover">
-              <source src="/video.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <iframe
+              src={videoUrl}
+              width="100%"
+              height="380"
+              allow="autoplay"
+              allowFullScreen
+              className="w-full rounded-lg"
+            />
             <div className="absolute top-4 left-4 text-white">
               <ChevronLeft size={24} />
             </div>
@@ -71,44 +111,21 @@ export default function VideoSlug() {
           </div>
         </div>
 
-        
-        <div className="space-y-6 flex flex-col justify-between">
-          <div className="space-y-6">
-            <div>
-              <p className="text-sm font-semibold text-[#202124]">Usability</p>
-              <p className="text-sm">8.24</p>
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-[#202124]">License</p>
-              <a href="#" className="text-blue-500 text-sm underline">MIT</a>
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-[#202124]">Expected update frequency</p>
-              <a href="#" className="text-blue-500 text-sm underline">MIT</a>
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-[#202124] mb-2">Tags</p>
-              <div className="flex flex-wrap gap-2">
-                {["Health", "African", "Infection", "Diseases", "WHO", "Economy", "Climate change", "Emergency"].map(tag => (
-                  <Badge key={tag} variant="outline" className="text-xs">{tag}</Badge>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          
-          <div className="p-4 bg-[#E6F0FF] rounded-lg flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-700 font-medium">Your Turn</p>
-              <p className="text-xs text-gray-600 mt-1">Try the exercise: Syntax, Variables and Numbers</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <Button variant="ghost" className="text-sm">Skip</Button>
-              <Button className="text-sm bg-[#4393F4] text-white px-6">Start</Button>
-            </div>
-          </div>
+        <div className="flex items-center justify-between mt-3">
+          <Button
+            className="bg-[#4393F4] text-white hover:bg-[#3b82dd]"
+            onClick={() => handleNavigation("prev")}
+          >
+            PREVIOUS
+          </Button>
+          <Button
+            className="bg-[#4393F4] text-white hover:bg-[#3b82dd]"
+            onClick={() => handleNavigation("next")}
+          >
+            NEXT
+          </Button>
         </div>
       </div>
     </div>
-  );
+  )
 }
