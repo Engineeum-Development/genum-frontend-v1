@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 
 export default function HomePage() {
   return (
-    <main className="px-5 md:px-10 py-10 space-y-20">
+    <main className="px-5 md:px-10 py-10 mt-[80px] space-y-20">
       {/* Welcome Section */}
       <section className="flex flex-col md:flex-row justify-between gap-5">
         <div className="space-y-2">

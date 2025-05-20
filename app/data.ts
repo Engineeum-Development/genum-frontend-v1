@@ -24,7 +24,7 @@ export const sectionsData: Section[] = [
       {
         id: "t1",
         name: "Item 1",
-        image: "/images/item1.jpg", // Use a local image or URL
+        image: "/images/item1.jpg", 
         description: "Item 1 description",
       },
       {
