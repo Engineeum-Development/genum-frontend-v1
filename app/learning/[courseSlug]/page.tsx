@@ -2,17 +2,17 @@
 import React, { useState } from "react";
 import learningImg from "/public/assets/images/genum--learning.png";
 import Image from "next/image";
-import { HiOutlineBookOpen } from "react-icons/hi2"
-import { IoListSharp, IoGrid } from "react-icons/io5"
+import { HiOutlineBookOpen } from "react-icons/hi2";
+import { IoListSharp, IoGrid } from "react-icons/io5";
 import LearningCard from "@/app/_components/learningCard";
 
-function page() {
+function Page() {
   const [isGrid, setIsGrid] = useState(false); // default to list view
 
-  type course = {
-    title: string;
-    description: string;
-  };
+  // type courseProps = {
+  //   title: string;
+  //   description: string;
+  // };
 
   const course = [
     {
@@ -97,12 +97,16 @@ function page() {
           <div className="flex gap-2 items-center text-xl">
             <button onClick={() => setIsGrid(false)}>
               <IoListSharp
-                className={`text-2xl ${!isGrid ? "text-[#4393F4]" : "text-gray-400"}`}
+                className={`text-2xl ${
+                  !isGrid ? "text-[#4393F4]" : "text-gray-400"
+                }`}
               />
             </button>
             <button onClick={() => setIsGrid(true)}>
               <IoGrid
-                className={`text-2xl ${isGrid ? "text-[#4393F4]" : "text-gray-400"}`}
+                className={`text-2xl ${
+                  isGrid ? "text-[#4393F4]" : "text-gray-400"
+                }`}
               />
             </button>
           </div>
@@ -118,7 +122,9 @@ function page() {
       </div>
       <div
         className={`w-[95%] mb-12 mx-auto ${
-          isGrid ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" : "flex flex-col gap-4"
+          isGrid
+            ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+            : "flex flex-col gap-4"
         }`}
       >
         {course.map((item) => (
@@ -129,4 +135,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

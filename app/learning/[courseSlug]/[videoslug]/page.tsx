@@ -1,44 +1,43 @@
-"use client"
+"use client";
 
-import React from "react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ChevronLeft, Settings, Volume2, Maximize2 } from "lucide-react"
-import Image from "next/image"
-import courseThumbnail from "/public/assets/images/course-thumb.png"
-import { useRouter, usePathname } from "next/navigation"
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ChevronLeft, Settings, Volume2, Maximize2 } from "lucide-react";
+import Image from "next/image";
+import courseThumbnail from "/public/assets/images/course-thumb.png";
+import { useRouter, usePathname } from "next/navigation";
 
-type VideoSlugProps = {
-  videoUrl: string
+interface PageProps {
+  params: { courseSlug: string; videoUrl: string };
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
-export default function VideoSlug({ videoUrl }: VideoSlugProps) {
-  const router = useRouter()
-  const pathname = usePathname()
+export default function VideoSlug({ params }: PageProps) {
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleNavigation = (direction: "next" | "prev") => {
-    const parts = pathname.split("/")
-    const currentId = parts[parts.length - 1]
+    const parts = pathname.split("/");
+    const currentId = parts[parts.length - 1];
 
     if (isNaN(currentId as any)) {
-      console.error("invalid ID:", pathname)
-      return
+      console.error("invalid ID:", pathname);
+      return;
     }
 
     const newId =
-      direction === "next"
-        ? Number(currentId) + 1
-        : Number(currentId) - 1
+      direction === "next" ? Number(currentId) + 1 : Number(currentId) - 1;
 
-    if (newId < 1) return
+    if (newId < 1) return;
 
-    parts[parts.length - 1] = newId.toString()
-    const newPath = parts.join("/")
+    parts[parts.length - 1] = newId.toString();
+    const newPath = parts.join("/");
 
-    router.push(newPath)
-  }
+    router.push(newPath);
+  };
 
   return (
     <div className="w-full px-6 md:px-12 py-10">
@@ -93,7 +92,7 @@ export default function VideoSlug({ videoUrl }: VideoSlugProps) {
         <div className="w-full">
           <div className="relative bg-black rounded-lg overflow-hidden">
             <iframe
-              src={videoUrl}
+              src={params.videoUrl}
               width="100%"
               height="380"
               allow="autoplay"
@@ -127,5 +126,5 @@ export default function VideoSlug({ videoUrl }: VideoSlugProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
