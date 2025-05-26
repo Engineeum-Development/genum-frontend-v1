@@ -6,7 +6,7 @@ import { HiOutlineBookOpen } from "react-icons/hi2"
 import { IoListSharp, IoGrid } from "react-icons/io5"
 import LearningCard from "@/app/_components/learningCard";
 
-function page() {
+function Page() {
   const [isGrid, setIsGrid] = useState(false); // default to list view
 
   type course = {
@@ -129,4 +129,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

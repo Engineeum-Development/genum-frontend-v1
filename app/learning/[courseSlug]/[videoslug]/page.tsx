@@ -1,14 +1,14 @@
+// components/VideoSlug.tsx
 "use client"
 
 import React from "react"
+import { useRouter, usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ChevronLeft, Settings, Volume2, Maximize2 } from "lucide-react"
 import Image from "next/image"
 import courseThumbnail from "/public/assets/images/course-thumb.png"
-import { useRouter, usePathname } from "next/navigation"
 
 type VideoSlugProps = {
   videoUrl: string
@@ -18,25 +18,22 @@ export default function VideoSlug({ videoUrl }: VideoSlugProps) {
   const router = useRouter()
   const pathname = usePathname()
 
+  const parts = pathname.split("/")
+  const videoSlug = parts[parts.length - 1]
+
   const handleNavigation = (direction: "next" | "prev") => {
-    const parts = pathname.split("/")
-    const currentId = parts[parts.length - 1]
+    const currentId = videoSlug
 
     if (isNaN(currentId as any)) {
       console.error("invalid ID:", pathname)
       return
     }
 
-    const newId =
-      direction === "next"
-        ? Number(currentId) + 1
-        : Number(currentId) - 1
-
+    const newId = direction === "next" ? Number(currentId) + 1 : Number(currentId) - 1
     if (newId < 1) return
 
     parts[parts.length - 1] = newId.toString()
     const newPath = parts.join("/")
-
     router.push(newPath)
   }
 
@@ -59,8 +56,7 @@ export default function VideoSlug({ videoUrl }: VideoSlugProps) {
           </TabsTrigger>
           <TabsTrigger
             value="data"
-            className="text-base font-medium text-gray-500 border-none rounded-none px-0 data-[state=active]:border-b-2 data-[state=active]:border-[#202124] data-[state=active]:text-[#202124]"
-          >
+            className="text-base font-medium text-gray-500 border-none rounded-none px-0 data-[state=active]:border-b-2 data-[state=active]:border-[#202124] data-[state=active]:text-[#202124]">
             Data(0)
           </TabsTrigger>
         </TabsList>
