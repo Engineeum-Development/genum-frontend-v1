@@ -1,0 +1,53 @@
+public/assets/images/arrow-down-icon.png
+public/assets/images/auth-bg.png
+public/assets/images/card--img.png
+public/assets/images/chat-icon.png
+public/assets/images/cloud-url-icon.png
+public/assets/images/courses-image.png
+public/assets/images/course-thumb.png
+public/assets/images/data-img-africa.png
+public/assets/images/data-img-npfl.png
+public/assets/images/data-more-icon.png
+public/assets/images/data-preview.png
+public/assets/images/dataset-illustration.png
+public/assets/images/download-icon.png
+public/assets/images/dummy-avatar-icon.png
+public/assets/images/eight homepage image.png
+public/assets/images/email-icon.png
+public/assets/images/eye-icon.png
+public/assets/images/fifth homepage image.png
+public/assets/images/first homepage image.png
+public/assets/images/folder-open.png
+public/assets/images/footer-bg1.png
+public/assets/images/forth homepage image.png
+public/assets/images/genum--learning.png
+public/assets/images/genum-logo-blue.png
+public/assets/images/github-url-icon.png
+public/assets/images/google-icon.png
+public/assets/images/icon-arts.png
+public/assets/images/icon-duplicate.png
+public/assets/images/icon-grid.png
+public/assets/images/icon-health.png
+public/assets/images/icon-list.png
+public/assets/images/icon-ml.png
+public/assets/images/icon-right.png
+public/assets/images/icon-social.png
+public/assets/images/idea-icon.png
+public/assets/images/learn-icon.png
+public/assets/images/learningpage-image.png
+public/assets/images/like-Icon.png
+public/assets/images/metadata-icon.png
+public/assets/images/profile-icon.png
+public/assets/images/progress-dummy.png
+public/assets/images/remote-url-icon (1).png
+public/assets/images/resetpassword-icon.png
+public/assets/images/search-icon.png
+public/assets/images/second homepage image.png
+public/assets/images/second homepage page.png
+public/assets/images/seventh homepage image.png
+public/assets/images/sixth homepage image .png
+public/assets/images/third homepage image.png
+public/assets/images/Tier-icon.png
+public/assets/images/trending-up-icon.png
+public/assets/images/userranking-icon.png
+public/assets/images/view-boards.png

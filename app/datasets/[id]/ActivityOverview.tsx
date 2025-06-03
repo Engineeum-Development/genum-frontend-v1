@@ -11,97 +11,107 @@ import profileIcon from "@/public/assets/images/profile-icon.png";
 import iconRight from "@/public/assets/images/icon-right.png";
 
 function ActivityOverview({ data }: any) {
-  return (
-    <div className="mt-[56px]">
-      <div className="mt-6 flex justify-between items-center flex-col gap-3 min-[500px]:flex-row min-[500px]:items-center">
-        <div className="flex gap-3 items-center">
-          <Image src={trendingUp} alt="trending-up" />
-          <p className="font-semibold text-[25px]">Activity Overview</p>
-        </div>
-        <div className="flex gap-2 items-center">
-          <p className="">Relevance</p>
-          <Button className="bg-transparent text-[#2A2A2A] px-1 py-0 hover:bg-transparent rounded-[11px] shadow-none">
-            <Image src={arrowDown} alt="arrow-down" />
-          </Button>
-          <Button className="bg-transparent text-[#2A2A2A] px-1 py-0 hover:bg-transparent rounded-[11px] shadow-none">
-            <Image src={listIcon} alt="list-icon" />
-          </Button>
-          <Button className="bg-transparent text-[#2A2A2A] px-1 py-0 hover:bg-transparent rounded-[11px] shadow-none py-0">
-            <Image src={gridIcon} alt="grid-icon" />
-          </Button>
-        </div>
-      </div>
+	return (
+		<div className="mt-[56px]">
+			<div className="mt-6 flex justify-between items-center flex-col gap-3 min-[500px]:flex-row min-[500px]:items-center">
+				<div className="flex gap-3 items-center">
+					<Image src={trendingUp} alt="trending-up" />
+					<p className="font-semibold text-[25px]">
+						Activity Overview
+					</p>
+				</div>
+				<div className="flex gap-2 items-center">
+					<p className="">Relevance</p>
+					<Button className="bg-transparent text-[#2A2A2A] px-1 py-0 hover:bg-transparent rounded-[11px] shadow-none">
+						<Image src={arrowDown} alt="arrow-down" />
+					</Button>
+					<Button className="bg-transparent text-[#2A2A2A] px-1 py-0 hover:bg-transparent rounded-[11px] shadow-none">
+						<Image src={listIcon} alt="list-icon" />
+					</Button>
+					<Button className="bg-transparent text-[#2A2A2A] px-1 hover:bg-transparent rounded-[11px] shadow-none py-0">
+						<Image src={gridIcon} alt="grid-icon" />
+					</Button>
+				</div>
+			</div>
 
-      <div className="mt-[48px] flex items-center sm:items-start justify-between flex-wrap gap-5">
-        <div className="flex flex-col lg:items-start sm:w-fit w-full items-center">
-          <div className="flex items-center gap-3">
-            <Image src={viewIcon} alt="view-icon" />
-            <p className="text-[20px] font-semibold text-[#2A2A2A]">Views</p>
-          </div>
-          <p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
-            {data?.views || 0}
-          </p>
-          <p className="text-[#6E6E6E] text-[15px] font-semibold">
-            in the last 30 days
-          </p>
-        </div>
-        <div className="flex flex-col lg:items-start sm:w-fit w-full items-center">
-          <div className="flex items-center gap-3">
-            <Image src={downloadIcon} alt="view-icon" />
-            <p className="text-[20px] font-semibold text-[#2A2A2A]">
-              Downloads
-            </p>
-          </div>
-          <p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
-            {data?.downloads || 0}
-          </p>
-          <p className="text-[#6E6E6E] text-[15px] font-semibold">
-            in the last 30 days
-          </p>
-        </div>
-        <div className="flex flex-col lg:items-start sm:w-fit w-full items-center">
-          <div className="flex items-center gap-3">
-            <Image src={iconRight} alt="view-icon" className="rotate-90" />
-            <p className="text-[20px] font-semibold text-[#2A2A2A]">
-              Engagements
-            </p>
-          </div>
-          <p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
-            {data?.engagements || 0}
-          </p>
-          <p className="text-[#6E6E6E] text-[15px] font-semibold">
-            in the last 30 days
-          </p>
-        </div>
-        <div className="flex flex-col lg:items-start sm:w-fit w-full items-center">
-          <div className="flex items-center gap-3">
-            <Image src={chatIcon} alt="view-icon" />
-            <p className="text-[20px] font-semibold text-[#2A2A2A]">Comments</p>
-          </div>
-          <p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
-            {data?.comments || 0}
-          </p>
-          <p className="text-[#6E6E6E] text-[15px] font-semibold">
-            in the last 30 days
-          </p>
-        </div>
-        <div className="flex flex-col lg:items-start sm:w-fit w-full items-center">
-          <div className="flex items-center gap-3">
-            <Image src={profileIcon} alt="view-icon" />
-            <p className="text-[20px] font-semibold text-[#2A2A2A] text-">
-              Top Contributor
-            </p>
-          </div>
-          <p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
-            1
-          </p>
-          <p className="text-[#6E6E6E] text-[15px] font-semibold">
-            in the last 30 days
-          </p>
-        </div>
-      </div>
-    </div>
-  );
+			<div className="mt-[48px] flex items-center sm:items-start justify-between flex-wrap gap-5">
+				<div className="flex flex-col lg:items-start sm:w-fit w-full items-center">
+					<div className="flex items-center gap-3">
+						<Image src={viewIcon} alt="view-icon" />
+						<p className="text-[20px] font-semibold text-[#2A2A2A]">
+							Views
+						</p>
+					</div>
+					<p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
+						{data?.views || 0}
+					</p>
+					<p className="text-[#6E6E6E] text-[15px] font-semibold">
+						in the last 30 days
+					</p>
+				</div>
+				<div className="flex flex-col lg:items-start sm:w-fit w-full items-center">
+					<div className="flex items-center gap-3">
+						<Image src={downloadIcon} alt="view-icon" />
+						<p className="text-[20px] font-semibold text-[#2A2A2A]">
+							Downloads
+						</p>
+					</div>
+					<p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
+						{data?.downloads || 0}
+					</p>
+					<p className="text-[#6E6E6E] text-[15px] font-semibold">
+						in the last 30 days
+					</p>
+				</div>
+				<div className="flex flex-col lg:items-start sm:w-fit w-full items-center">
+					<div className="flex items-center gap-3">
+						<Image
+							src={iconRight}
+							alt="view-icon"
+							className="rotate-90"
+						/>
+						<p className="text-[20px] font-semibold text-[#2A2A2A]">
+							Engagements
+						</p>
+					</div>
+					<p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
+						{data?.engagements || 0}
+					</p>
+					<p className="text-[#6E6E6E] text-[15px] font-semibold">
+						in the last 30 days
+					</p>
+				</div>
+				<div className="flex flex-col lg:items-start sm:w-fit w-full items-center">
+					<div className="flex items-center gap-3">
+						<Image src={chatIcon} alt="view-icon" />
+						<p className="text-[20px] font-semibold text-[#2A2A2A]">
+							Comments
+						</p>
+					</div>
+					<p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
+						{data?.comments || 0}
+					</p>
+					<p className="text-[#6E6E6E] text-[15px] font-semibold">
+						in the last 30 days
+					</p>
+				</div>
+				<div className="flex flex-col lg:items-start sm:w-fit w-full items-center">
+					<div className="flex items-center gap-3">
+						<Image src={profileIcon} alt="view-icon" />
+						<p className="text-[20px] font-semibold text-[#2A2A2A] text-">
+							Top Contributor
+						</p>
+					</div>
+					<p className="  text-[#2A2A2A] text-[39px] font-bold  w-full text-center">
+						1
+					</p>
+					<p className="text-[#6E6E6E] text-[15px] font-semibold">
+						in the last 30 days
+					</p>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default ActivityOverview;

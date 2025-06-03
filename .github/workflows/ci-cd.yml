@@ -29,11 +29,17 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
-            - name: Run TypeScript type check
-              run: npm run type-check
+            # Verify image assets exist
+            - name: Check for missing image assets
+              run: |
+                  echo "Checking for missing image files..."
+                  find . -name "*.tsx" -o -name "*.ts" | xargs grep -l "\.png\|\.jpg\|\.jpeg\|\.svg" | head -5
 
             - name: Run ESLint
               run: npm run lint
+
+            - name: Run TypeScript type check
+              run: npm run type-check
 
             - name: Run tests
               run: npm test
@@ -50,6 +56,7 @@ jobs:
                   path: |
                       .next/
                       out/
+                      public/
                   retention-days: 7
 
     deploy:
@@ -60,6 +67,20 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20.x"
+                  cache: "npm"
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Download build artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  name: build-files-20.x
 
             - name: Deploy to Vercel
               uses: amondnet/vercel-action@v25

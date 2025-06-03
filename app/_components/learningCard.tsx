@@ -1,5 +1,5 @@
 import React from "react"
-import CardImg from "/public/assets/images/card--img.png"
+import CardImg from "@/public/assets/images/card--img.png"
 import Image from "next/image"
 import Link from "next/link"
 
